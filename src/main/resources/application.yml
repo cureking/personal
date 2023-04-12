@@ -1,1 +1,19 @@
-
+spring:
+  application:
+    name: spring-data-jpa-demo
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://rm-8vbmye8klj1t0n56b3o.mysql.zhangbei.rds.aliyuncs.com:3306/jpa
+    username: jpa_root
+    password: 52671Sheng
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    user:
+      name: admin
+      password: 123456
+server:
+  port: 2333
