@@ -38,10 +38,10 @@ public class User {
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userInfoId", referencedColumnName = "id")
     private UserInfo userInfo;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userAuthorizationId", referencedColumnName = "id")
     private UserAuthorization userAuthorization;
 }

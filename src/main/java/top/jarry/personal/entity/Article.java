@@ -33,8 +33,18 @@ public class Article {
 
     private LocalDateTime modifyTime;
 
+    private LocalDateTime publishTime;
+
+    @OneToOne
+    @JoinColumn(name = "draftArticleInfoId" ,referencedColumnName = "id")
+    private ArticleInfo draftArticleInfo;
+
+    @OneToOne
+    @JoinColumn(name = "publishedArticleInfoId" ,referencedColumnName = "id")
+    private ArticleInfo publishedArticleInfo;
+
     @OneToMany
-    @JoinColumn(name = "article_id" ,referencedColumnName = "id")
+    @JoinColumn(name = "articleInfoIds" ,referencedColumnName = "id")
     private List<ArticleInfo> articleInfos;
 
 }

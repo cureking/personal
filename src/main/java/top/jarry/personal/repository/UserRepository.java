@@ -12,9 +12,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     /**
      * 根据用户名/账号，查询用户信息
-     * @param name 用户名/账号
+     * @param account 用户名/账号
      * @return 用户信息
      */
-    User findUserByName(String name);
+    User findUserByAccount(String account);
 
 }
