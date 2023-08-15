@@ -1,5 +1,7 @@
 package top.jarry.personal.infrastructure.common;
 
+import lombok.Getter;
+
 import java.io.Serializable;
 
 /**
@@ -7,9 +9,11 @@ import java.io.Serializable;
  */
 public class ServerResponse<T> implements Serializable {
 
-    private boolean success;
+    private final boolean success;
 
+    @Getter
     private T data;
+    @Getter
     private String msg;
 
     private ServerResponse(boolean success) {
@@ -32,23 +36,6 @@ public class ServerResponse<T> implements Serializable {
         this.msg = msg;
     }
 
-    public boolean isSuccess() {
-        return this.success == true;
-    }
-
-    public boolean getSuccess() {
-        return success;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-
     public static <T> ServerResponse<T> createBySuccess() {
         return new ServerResponse<T>(true);
     }
@@ -65,13 +52,20 @@ public class ServerResponse<T> implements Serializable {
         return new ServerResponse<T>(true, msg, data);
     }
 
-
     public static <T> ServerResponse<T> createByError() {
         return new ServerResponse<T>(false);
     }
 
-
     public static <T> ServerResponse<T> createByErrorMessage(String errorMessage) {
         return new ServerResponse<T>(false, errorMessage);
     }
+
+    public boolean isSuccess() {
+        return this.success;
+    }
+
+    public boolean getSuccess() {
+        return success;
+    }
+
 }

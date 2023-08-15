@@ -1,20 +1,25 @@
 spring:
   application:
-    name: spring-data-jpa-demo
+    name: personal
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://rm-8vbmye8klj1t0n56b3o.mysql.zhangbei.rds.aliyuncs.com:3306/jpa
-    username: jpa_root
-    password: 52671Sheng
+#    url: jdbc:mysql://rm-8vbmye8klj1t0n56b3o.mysql.zhangbei.rds.aliyuncs.com:3306/jpa
+#    username: jpa_root
+#    password: 52671Sheng
+
+#   内网nas的mysql（后期可以配合域名处理）
+    url: jdbc:mysql://192.168.50.109:3306/personal
+    username: root
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
   security:
-    user:
-      name: admin
-      password: 123456
+    enable: false
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 server:
   port: 2333
 

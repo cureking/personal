@@ -9,7 +9,7 @@ import top.jarry.personal.application.converters.UserDtoConverter;
 import top.jarry.personal.application.dto.request.UserRegisterRequest;
 import top.jarry.personal.application.dto.request.UserUpdateInfoRequest;
 import top.jarry.personal.application.dto.response.UserInfoResponse;
-import top.jarry.personal.domain.model.entity.User;
+import top.jarry.personal.domain.model.entity.UserEntity;
 import top.jarry.personal.domain.service.UserDomainService;
 import top.jarry.personal.infrastructure.common.ServerResponse;
 
@@ -18,75 +18,79 @@ import top.jarry.personal.infrastructure.common.ServerResponse;
  * @Date 2023/8/6 22:18
  * @Author king
  */
-@Service()
+@Service
 public class UserService {
     @Resource
     private UserDomainService userDomainService;
 
     /**
      * 获取用户信息
+     *
      * @param code
      * @return
      */
     public ServerResponse<UserInfoResponse> getUserInfo(@Nonnull String code) {
-        ServerResponse<User> userDomainProfileResponse = userDomainService.getProfile(code);
+        ServerResponse<UserEntity> userDomainProfileResponse = userDomainService.getProfile(code);
         if (!userDomainProfileResponse.isSuccess()) {
             return ServerResponse.createByErrorMessage(userDomainProfileResponse.getMsg());
         }
-        User user = userDomainProfileResponse.getData();
-        UserInfoResponse userInfoResponse = UserDtoConverter.convertToUserInfoResponse(user);
+        UserEntity userEntity = userDomainProfileResponse.getData();
+        UserInfoResponse userInfoResponse = UserDtoConverter.convertToUserInfoResponse(userEntity);
 
         return ServerResponse.createBySuccess(userInfoResponse);
     }
 
     /**
      * 注册
+     *
      * @param request
      * @return
      */
     public ServerResponse<UserInfoResponse> register(@Valid UserRegisterRequest request) {
 
-        ServerResponse<User> userDomainProfileResponse = userDomainService.register(request);
+        ServerResponse<UserEntity> userDomainProfileResponse = userDomainService.register(request);
         if (!userDomainProfileResponse.isSuccess()) {
             return ServerResponse.createByErrorMessage(userDomainProfileResponse.getMsg());
         }
-        User user = userDomainProfileResponse.getData();
-        UserInfoResponse userInfoResponse = UserDtoConverter.convertToUserInfoResponse(user);
+        UserEntity userEntity = userDomainProfileResponse.getData();
+        UserInfoResponse userInfoResponse = UserDtoConverter.convertToUserInfoResponse(userEntity);
 
         return ServerResponse.createBySuccess(userInfoResponse);
     }
 
     public ServerResponse<UserInfoResponse> login(@Valid @NotBlank String name, @NotBlank String password) {
 
-        ServerResponse<User> userDomainProfileResponse = userDomainService.login(name, password);
+        ServerResponse<UserEntity> userDomainProfileResponse = userDomainService.login(name, password);
         if (!userDomainProfileResponse.isSuccess()) {
             return ServerResponse.createByErrorMessage(userDomainProfileResponse.getMsg());
         }
-        User user = userDomainProfileResponse.getData();
-        UserInfoResponse userInfoResponse = UserDtoConverter.convertToUserInfoResponse(user);
+        UserEntity userEntity = userDomainProfileResponse.getData();
+        UserInfoResponse userInfoResponse = UserDtoConverter.convertToUserInfoResponse(userEntity);
 
         return ServerResponse.createBySuccess(userInfoResponse);
     }
 
     /**
      * 更新用户信息
+     *
      * @param request
      * @return
      */
     public ServerResponse<UserInfoResponse> updateUserInfo(@Valid UserUpdateInfoRequest request) {
 
-        ServerResponse<User> userDomainProfileResponse = userDomainService.updateProfile(request);
+        ServerResponse<UserEntity> userDomainProfileResponse = userDomainService.updateProfile(request);
         if (!userDomainProfileResponse.isSuccess()) {
             return ServerResponse.createByErrorMessage(userDomainProfileResponse.getMsg());
         }
-        User user = userDomainProfileResponse.getData();
-        UserInfoResponse userInfoResponse = UserDtoConverter.convertToUserInfoResponse(user);
+        UserEntity userEntity = userDomainProfileResponse.getData();
+        UserInfoResponse userInfoResponse = UserDtoConverter.convertToUserInfoResponse(userEntity);
 
         return ServerResponse.createBySuccess(userInfoResponse);
     }
 
     /**
      * 注销
+     *
      * @return
      */
     public ServerResponse logout() {

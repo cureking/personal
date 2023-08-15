@@ -14,9 +14,7 @@ public enum UserRoleEnum {
 
     ROLE_ADMIN(2, "管理员"),
     ROLE_REGISTRANT(1, "注册者"),
-    ROLE_UNKNOW(-1, "未知")
-
-    ;
+    ROLE_UNKNOW(-1, "未知");
 
     private int code;
     private String desc;

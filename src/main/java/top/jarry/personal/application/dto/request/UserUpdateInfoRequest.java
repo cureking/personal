@@ -1,11 +1,9 @@
 package top.jarry.personal.application.dto.request;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import top.jarry.personal.infrastructure.enums.UserRoleEnum;
 
 /**
  * @Description 用户更新信息请求

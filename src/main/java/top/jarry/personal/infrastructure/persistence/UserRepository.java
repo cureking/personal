@@ -1,22 +1,30 @@
 package top.jarry.personal.infrastructure.persistence;
 
-import org.springframework.data.repository.CrudRepository;
-import top.jarry.personal.infrastructure.persistence.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import top.jarry.personal.domain.model.entity.UserEntity;
 
 /**
- * @description:
- * @author: 天数
- * @since: 2022/10/14 11:35
+ * @Description 用户仓储
+ * @Date 2023/8/6 18:05
+ * @Author king
  */
-public interface UserRepository extends CrudRepository<User, Long> {
+@Repository
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+    /**
+     * 根据用户名查找用户
+     *
+     * @param username
+     * @return
+     */
+    UserEntity findByName(String username);
 
     /**
-     * 根据用户名/账号，查询用户信息
-     * @param account 用户名/账号
-     * @return 用户信息
+     * 根据用户编码查找用户
+     *
+     * @param userCode
+     * @return
      */
-    User findUserByAccount(String account);
-
-
+    UserEntity findByCode(String userCode);
 
 }

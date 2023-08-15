@@ -2,7 +2,7 @@ package top.jarry.personal.application.converters;
 
 import org.springframework.beans.BeanUtils;
 import top.jarry.personal.application.dto.response.UserInfoResponse;
-import top.jarry.personal.domain.model.entity.User;
+import top.jarry.personal.domain.model.entity.UserEntity;
 
 /**
  * @Description TODO
@@ -11,12 +11,12 @@ import top.jarry.personal.domain.model.entity.User;
  */
 public class UserDtoConverter {
 
-    public static UserInfoResponse convertToUserInfoResponse(User user) {
-        if (user == null) {
+    public static UserInfoResponse convertToUserInfoResponse(UserEntity userEntity) {
+        if (userEntity == null) {
             return null;
         }
         UserInfoResponse userInfoResponse = new UserInfoResponse();
-        BeanUtils.copyProperties(user, userInfoResponse);
+        BeanUtils.copyProperties(userEntity, userInfoResponse);
 
         return userInfoResponse;
     }

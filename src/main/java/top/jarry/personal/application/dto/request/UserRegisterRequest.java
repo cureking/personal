@@ -33,5 +33,5 @@ public class UserRegisterRequest {
     @NotBlank
     @Email(message = "邮箱格式不正确")
     private String email;
-
+//http://localhost:2333/user/register?name=jarry&password=123456&email=7777777@qq.com
 }
